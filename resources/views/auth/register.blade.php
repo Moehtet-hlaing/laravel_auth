@@ -1,5 +1,5 @@
 <x-layout>
-  <form action="" method="POST">
+  <form action="{{ route('register') }}" method="POST">
     @csrf
 
     <h2>Register for an Account</h2>
@@ -8,7 +8,7 @@
     <input
       type="text"
       name="name"
-      value=""
+      value="{{ old('name') }}"
       required
     >
 
@@ -16,7 +16,7 @@
     <input
       type="email"
       name="email"
-      value=""
+      value="{{ old('email') }}"
       required
     >
 

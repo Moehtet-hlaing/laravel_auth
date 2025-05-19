@@ -1,5 +1,5 @@
 <x-layout>
-  <form action="" method="POST">
+  <form action="{{ route('login') }}" method="POST">
     @csrf
 
     <h2>Log In to Your Account</h2>
@@ -8,7 +8,7 @@
     <input
       type="email"
       name="email"
-      value=""
+      value="{{ old('email') }}"
       required
     >
 
