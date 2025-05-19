@@ -1,27 +1,24 @@
 <x-layout>
-  <form action="{{ route('login') }}" method="POST">
-    @csrf
+    <form action="{{ route('login') }}" method="POST">
+        @csrf
 
-    <h2>Log In to Your Account</h2>
+        <h2>Log In to Your Account</h2>
 
-    <label for="email">Email:</label>
-    <input
-      type="email"
-      name="email"
-      value="{{ old('email') }}"
-      required
-    >
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{ old('email') }}" required>
 
-    <label for="password">Password:</label>
-    <input
-      type="password"
-      name="password"
-      required
-    >
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
 
-    <button type="submit" class="btn mt-4">Log in</button>
+        <button type="submit" class="btn mt-4">Log in</button>
 
-    <!-- validation errors -->
-
-  </form>
+        <!-- validation errors -->
+        @if ($errors->any())
+            <ul class=" px-4 py-2 bg-red-100">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+    </form>
 </x-layout>

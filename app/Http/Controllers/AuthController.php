@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -27,8 +28,19 @@ class AuthController extends Controller
         return redirect()->route('ninjas.index');
     }
 
-    public function login () {
-        //
+    public function login (Request $request) {
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string'
+        ]);
+        if(Auth::attempt($validated)){
+            $request->session()->regenerate();
+            return redirect()->route('ninjas.index');
+        }
+
+        throw ValidationException::withMessages([
+            'credentials' => 'The provided credentials are incorrect'
+        ]);
     }
     public function logout (Request $request) {
         Auth::logout();
