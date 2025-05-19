@@ -20,7 +20,10 @@
             <a href="{{ route('ninjas.create')}} ">Create New Ninja</a>
             <a href="{{ route('show.login')}} ">Login</a>
             <a href="{{ route('show.register')}} ">Register</a>
-
+            <form action="{{ route('logout') }}" method="POST" class="m-0">
+                @csrf
+                <button class="btn">logout</button>
+            </form>
         </nav>
     </header>
     <main class="container">
